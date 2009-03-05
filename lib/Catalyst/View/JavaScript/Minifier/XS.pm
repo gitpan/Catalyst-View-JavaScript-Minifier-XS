@@ -159,7 +159,7 @@ sub process {
 		# minifying them if any files loaded at all
 		$c->res->body( minify(join(" ",@output)) );	
 	} else {
-		$c->res->body( "" );	
+		$c->res->body( " " );	
 	}
 }
 

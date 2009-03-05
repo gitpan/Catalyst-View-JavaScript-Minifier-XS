@@ -1,7 +1,7 @@
 # This Makefile is for the Catalyst::View::JavaScript::Minifier::XS extension to perl.
 #
 # It was generated automatically by MakeMaker version
-# 6.44 (Revision: 54639) from the contents of
+# 6.48 (Revision: 64800) from the contents of
 # Makefile.PL. Don't edit this file, edit Makefile.PL instead.
 #
 #       ANY CHANGES MADE HERE WILL BE LOST!
@@ -136,8 +136,8 @@ PERM_RW = 644
 PERM_RWX = 755
 
 MAKEMAKER   = /usr/lib/perl5/5.8.8/ExtUtils/MakeMaker.pm
-MM_VERSION  = 6.44
-MM_REVISION = 54639
+MM_VERSION  = 6.48
+MM_REVISION = 64800
 
 # FULLEXT = Pathname for extension directory (eg Foo/Bar/Oracle).
 # BASEEXT = Basename part of FULLEXT. May be just equal FULLEXT. (eg Oracle)
@@ -160,7 +160,7 @@ C_FILES  =
 O_FILES  = 
 H_FILES  = 
 MAN1PODS = 
-MAN3PODS = lib/Catalyst/Helper/JavaScript/Minifier/XS.pm \
+MAN3PODS = lib/Catalyst/Helper/View/JavaScript/Minifier/XS.pm \
 	lib/Catalyst/View/JavaScript/Minifier/XS.pm
 
 # Where is the Config information that we are using/depend on
@@ -183,17 +183,17 @@ PERL_ARCHIVE       =
 PERL_ARCHIVE_AFTER = 
 
 
-TO_INST_PM = lib/Catalyst/Helper/JavaScript/Minifier/XS.pm \
+TO_INST_PM = lib/Catalyst/Helper/View/JavaScript/Minifier/XS.pm \
 	lib/Catalyst/View/JavaScript/Minifier/XS.pm
 
 PM_TO_BLIB = lib/Catalyst/View/JavaScript/Minifier/XS.pm \
 	blib/lib/Catalyst/View/JavaScript/Minifier/XS.pm \
-	lib/Catalyst/Helper/JavaScript/Minifier/XS.pm \
-	blib/lib/Catalyst/Helper/JavaScript/Minifier/XS.pm
+	lib/Catalyst/Helper/View/JavaScript/Minifier/XS.pm \
+	blib/lib/Catalyst/Helper/View/JavaScript/Minifier/XS.pm
 
 
 # --- MakeMaker platform_constants section:
-MM_Unix_VERSION = 6.44
+MM_Unix_VERSION = 6.48
 PERL_MALLOC_DEF = -DPERL_EXTMALLOC_DEF -Dmalloc=Perl_malloc -Dfree=Perl_mfree -Drealloc=Perl_realloc -Dcalloc=Perl_calloc
 
 
@@ -410,10 +410,10 @@ POD2MAN = $(POD2MAN_EXE)
 
 manifypods : pure_all  \
 	lib/Catalyst/View/JavaScript/Minifier/XS.pm \
-	lib/Catalyst/Helper/JavaScript/Minifier/XS.pm
+	lib/Catalyst/Helper/View/JavaScript/Minifier/XS.pm
 	$(NOECHO) $(POD2MAN) --section=3 --perm_rw=$(PERM_RW) \
 	  lib/Catalyst/View/JavaScript/Minifier/XS.pm $(INST_MAN3DIR)/Catalyst::View::JavaScript::Minifier::XS.$(MAN3EXT) \
-	  lib/Catalyst/Helper/JavaScript/Minifier/XS.pm $(INST_MAN3DIR)/Catalyst::Helper::JavaScript::Minifier::XS.$(MAN3EXT) 
+	  lib/Catalyst/Helper/View/JavaScript/Minifier/XS.pm $(INST_MAN3DIR)/Catalyst::Helper::View::JavaScript::Minifier::XS.$(MAN3EXT) 
 
 
 
@@ -478,22 +478,28 @@ realclean purge ::  clean realclean_subdirs
 metafile : create_distdir
 	$(NOECHO) $(ECHO) Generating META.yml
 	$(NOECHO) $(ECHO) '--- #YAML:1.0' > META_new.yml
-	$(NOECHO) $(ECHO) 'name:                Catalyst-View-JavaScript-Minifier-XS' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version:             0.02' >> META_new.yml
-	$(NOECHO) $(ECHO) 'abstract:            Concenate and minify your JavaScript files.' >> META_new.yml
-	$(NOECHO) $(ECHO) 'license:             perl' >> META_new.yml
-	$(NOECHO) $(ECHO) 'author:              ' >> META_new.yml
+	$(NOECHO) $(ECHO) 'name:               Catalyst-View-JavaScript-Minifier-XS' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version:            0.02' >> META_new.yml
+	$(NOECHO) $(ECHO) 'abstract:           Concenate and minify your JavaScript files.' >> META_new.yml
+	$(NOECHO) $(ECHO) 'author:' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - Ivan Drinchev <drinchev@gmail.com>' >> META_new.yml
-	$(NOECHO) $(ECHO) 'generated_by:        ExtUtils::MakeMaker version 6.44' >> META_new.yml
-	$(NOECHO) $(ECHO) 'distribution_type:   module' >> META_new.yml
-	$(NOECHO) $(ECHO) 'requires:     ' >> META_new.yml
-	$(NOECHO) $(ECHO) '    Catalyst:                      5.64' >> META_new.yml
-	$(NOECHO) $(ECHO) '    CSS::Minifier::XS:             0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    CSS::Squish:                   0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    Test::More:                    0' >> META_new.yml
+	$(NOECHO) $(ECHO) 'license:            perl' >> META_new.yml
+	$(NOECHO) $(ECHO) 'distribution_type:  module' >> META_new.yml
+	$(NOECHO) $(ECHO) 'configure_requires:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    ExtUtils::MakeMaker:  0' >> META_new.yml
+	$(NOECHO) $(ECHO) 'requires:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    Catalyst:           5.64' >> META_new.yml
+	$(NOECHO) $(ECHO) '    CSS::Minifier::XS:  0' >> META_new.yml
+	$(NOECHO) $(ECHO) '    CSS::Squish:        0' >> META_new.yml
+	$(NOECHO) $(ECHO) '    Test::More:         0' >> META_new.yml
+	$(NOECHO) $(ECHO) 'no_index:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    directory:' >> META_new.yml
+	$(NOECHO) $(ECHO) '        - t' >> META_new.yml
+	$(NOECHO) $(ECHO) '        - inc' >> META_new.yml
+	$(NOECHO) $(ECHO) 'generated_by:       ExtUtils::MakeMaker version 6.48' >> META_new.yml
 	$(NOECHO) $(ECHO) 'meta-spec:' >> META_new.yml
-	$(NOECHO) $(ECHO) '    url:     http://module-build.sourceforge.net/META-spec-v1.3.html' >> META_new.yml
-	$(NOECHO) $(ECHO) '    version: 1.3' >> META_new.yml
+	$(NOECHO) $(ECHO) '    url:      http://module-build.sourceforge.net/META-spec-v1.4.html' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version:  1.4' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 
 
@@ -805,7 +811,7 @@ ppd :
 pm_to_blib : $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', '\''$(PM_FILTER)'\'')' -- \
 	  lib/Catalyst/View/JavaScript/Minifier/XS.pm blib/lib/Catalyst/View/JavaScript/Minifier/XS.pm \
-	  lib/Catalyst/Helper/JavaScript/Minifier/XS.pm blib/lib/Catalyst/Helper/JavaScript/Minifier/XS.pm 
+	  lib/Catalyst/Helper/View/JavaScript/Minifier/XS.pm blib/lib/Catalyst/Helper/View/JavaScript/Minifier/XS.pm 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
 
