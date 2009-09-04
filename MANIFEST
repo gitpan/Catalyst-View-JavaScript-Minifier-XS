@@ -5,3 +5,4 @@ README
 lib/Catalyst/View/JavaScript/Minifier/XS.pm
 t/00-load.t
 t/pod.t
+META.yml                                 Module meta-data (added by MakeMaker)
