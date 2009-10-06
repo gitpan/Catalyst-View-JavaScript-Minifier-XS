@@ -1,0 +1,25 @@
+{
+   "resources" : {
+      "repository" : ""
+   },
+   "meta-spec" : {
+      "version" : 1.4,
+      "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
+   },
+   "generated_by" : "Dist::Zilla version 1.092680",
+   "version" : "0.092790",
+   "name" : "Catalyst-View-JavaScript-Minifier-XS",
+   "author" : [
+      "Ivan Drinchev <drinchev@gmail.com>"
+   ],
+   "license" : "perl",
+   "requires" : {
+      "Test::More" : "0",
+      "parent" : "0",
+      "JavaScript::Minifier::XS" : "0",
+      "Path::Class" : "0.17",
+      "Catalyst" : "5.64",
+      "Moose" : "0"
+   },
+   "abstract" : "Concenate and minify your JavaScript files."
+}

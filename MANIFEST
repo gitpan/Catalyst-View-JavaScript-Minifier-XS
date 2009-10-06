@@ -1,8 +1,14 @@
 Changes
+LICENSE
 MANIFEST
+META.json
 Makefile.PL
 README
+dist.ini
+lib/Catalyst/Helper/View/JavaScript/Minifier/XS.pm
 lib/Catalyst/View/JavaScript/Minifier/XS.pm
 t/00-load.t
+t/boilerplate.t
 t/pod.t
-META.yml                                 Module meta-data (added by MakeMaker)
+t/release-pod-coverage.t
+t/release-pod-syntax.t

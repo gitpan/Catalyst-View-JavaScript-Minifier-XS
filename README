@@ -1,42 +1,76 @@
-Catalyst-View-JavaScript-Minifier-XS
+VERSION
+    version 0.092790
 
-This module is for catalyst framework and is for making your JavaScript minified
+NAME
+    Catalyst::View::JavaScript::Minifier::XS - Concenate and minify your
+    JavaScript files.
 
-INSTALLATION
+SYNOPSIS
+        # creating MyApp::View::JavaScript
+        ./script/myapp_create.pl view JavaScript JavaScript::Minifier::XS
 
-To install this module, run the following commands:
+            # in your controller file, as an action
+        sub js : Local {
+                    my ( $self, $c ) = @_;
 
-	perl Makefile.PL
-	make
-	make test
-	make install
+                    $c->stash->{js} = [qw/script1 script2/]; # loads root/js/script1.js and root/js/script2.js
 
-SUPPORT AND DOCUMENTATION
+                    $c->forward("View::JavaScript");
+        }
 
-After installing, you can find documentation for this module with the
-perldoc command.
+            # in your html template use
+            <script type="text/javascript" src="/js"></script>
 
-    perldoc Catalyst::View::JavaScript::Minifier::XS
+DESCRIPTION
+    Use your minified js files as a separated catalyst request. By default
+    they are read from "$c->stash->{js}" as array or string.
 
-You can also look for information at:
+CONFIG VARIABLES
+    stash_variable
+      sets a different stash variable from the default "$c->stash->{js}"
 
-    RT, CPAN's request tracker
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Catalyst-View-JavaScript-Minifier-XS
+    path
+      sets a different path for your javascript files
 
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/Catalyst-View-JavaScript-Minifier-XS
+      default : js
 
-    CPAN Ratings
-        http://cpanratings.perl.org/d/Catalyst-View-JavaScript-Minifier-XS
+    subinclude
+      setting this to true will take your js files (stash variable) from
+      your referer action
 
-    Search CPAN
-        http://search.cpan.org/dist/Catalyst-View-JavaScript-Minifier-XS/
+              # in your controller
+              sub action : Local {
+                      my ( $self, $c ) = @_;
 
+                      $c->stash->{js} = "exclusive"; # loads exclusive.js only when /action is loaded
+              }
 
-COPYRIGHT AND LICENCE
+      This could be very dangerous since it's using
+      "$c->forward($c->request->headers->referer)". It doesn't work with the
+      index action!
 
-Copyright (C) 2009 Ivan Drinchev
+      default : false
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+SEE ALSO
+    Catalyst, Catalyst::View, JavaScript::Minifier::XS
+
+AUTHOR
+    Ivan Drinchev "<drinchev at gmail.com>"
+
+    Arthur Axel "fREW" Schmidt <frioux@gmail.com>
+
+BUGS
+    Please report any bugs or feature requests to
+    "bug-catalyst-view-JavaScript-minifier-xs at rt.cpan.org", or through
+    the web interface at
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Catalyst-View-JavaScript
+    -Minifier-XS>. I will be notified, and then you'll automatically be
+    notified of progress on your bug as I make changes.
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2009 by Ivan Drinchev
+    <drinchev@gmail.com>.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 
