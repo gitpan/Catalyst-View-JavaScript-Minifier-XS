@@ -1,5 +1,5 @@
 package Catalyst::Helper::View::JavaScript::Minifier::XS;
-our $VERSION = '0.092790';
+our $VERSION = '0.092800';
 
 
 
@@ -22,7 +22,7 @@ sub mk_compclass {
 
 =head1 VERSION
 
-version 0.092790
+version 0.092800
 
 =head1 NAME
 
