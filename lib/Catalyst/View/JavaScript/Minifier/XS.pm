@@ -1,7 +1,9 @@
 package Catalyst::View::JavaScript::Minifier::XS;
-our $VERSION = '0.092800';
+our $VERSION = '1.093030';
 
 
+
+# ABSTRACT: Minify your served JavaScript files
 
 use Moose;
 extends 'Catalyst::View';
@@ -9,7 +11,6 @@ extends 'Catalyst::View';
 use JavaScript::Minifier::XS qw/minify/;
 use Path::Class::File;
 use URI;
-
 
 has stash_variable => (
    is => 'ro',
@@ -30,113 +31,126 @@ has subinclude => (
 );
 
 sub process {
-	my ($self,$c) = @_;
+   my ($self,$c) = @_;
 
-	my $path = $self->path;
-	my $variable = $self->stash_variable;
-	my @files = ();
+   my $original_stash = $c->stash->{$self->stash_variable};
+   my @files = $self->_expand_stash($original_stash);
 
-	my $original_stash = $c->stash->{$variable};
+   $c->res->content_type('text/javascript');
 
-	# setting the return content type
-	$c->res->content_type('text/javascript');
+   push @files, $self->_subinclude($c, $original_stash, @files);
 
-	# turning stash variable into @files
-	if ( $c->stash->{$variable} ) {
-		@files = ( ref $c->stash->{$variable} eq 'ARRAY' ? @{ $c->stash->{$variable} } : split /\s+/, $c->stash->{$variable} );
-	}
+   my $home = $self->config->{INCLUDE_PATH} || $c->path_to('root');
+   @files = map {
+      $_ =~ s/\.js$//;
+      Path::Class::File->new( $home, $self->path, "$_.js" );
+   } grep { defined $_ && $_ ne '' } @files;
 
-	# No referer we won't show anything
-	if ( ! $c->request->headers->referer ) {
-		$c->log->debug('javascripts called from no referer sending blank');
-		$c->res->body( q{ } );
-		$c->detach();
-	}
+   my @output = $self->_combine_files($c, \@files);
 
-	# If we have subinclude ON then we should run the action and see what it left behind
-	if ( $self->subinclude ) {
-		my $base = $c->request->base;
-		if ( $c->request->headers->referer ) {
-			my $referer = URI->new($c->request->headers->referer);
-			if ( $referer->path ne '/' ) {
-				$c->forward('/'.$referer->path);
-				$c->log->debug('js taken from referer : '.$referer->path);
-				if ( $c->stash->{$variable} ne $original_stash ) {
-					# adding other files returned from $c->forward to @files ( if any )
-					push @files, ( ref $c->stash->{$variable} eq 'ARRAY' ? @{ $c->stash->{$variable} } : split /\s+/, $c->stash->{$variable} );
-				}
-			} else {
-				# well for now we can't get js files from index, because it's indefinite loop
-				$c->log->debug(q{we can't take js from index, it's too dangerous!});
-			}
-		}
-	}
-
-	my $home = $self->config->{INCLUDE_PATH} || $c->path_to('root');
-	@files = map {
-		my $file = $_;
-		$file =~ s/\.js$//;
-		Path::Class::File->new( $home, "$path", "$file.js" );
-	} @files;
-
-	# combining the files
-	my @output = ();
-	for my $file ( @files ) {
-		$c->log->debug("loading js file ... $file");
-		open my $in, '<', "$file";
-		for ( <$in> ) {
-			push @output, $_;
-		}
-		close $in;
-	}
-
-	if ( @output ) {
-		# minifying them if any files loaded at all
-		$c->res->body(
-                   $c->debug
-                      ? join q{ },@output
-                      : minify(join q{ }, @output )
-                );
-	} else {
-		$c->res->body( q{ } );
-	}
+   $c->res->body( $self->_minify($c, \@output) );
 }
 
+sub _subinclude {
+   my ( $self, $c, $original_stash, @files ) = @_;
+
+   return unless $self->subinclude && $c->request->headers->referer;
+
+   unless ( $c->request->headers->referer ) {
+      $c->log->debug('javascripts called from no referer sending blank');
+      $c->res->body( q{ } );
+      $c->detach();
+   }
+
+   my $referer = URI->new($c->request->headers->referer);
+
+   if ( $referer->path eq '/' ) {
+      $c->log->debug(q{we can't take js from index as it's too likely to enter an infinite loop!});
+      return;
+   }
+
+   $c->forward('/'.$referer->path);
+   $c->log->debug('js taken from referer : '.$referer->path);
+
+   return $self->_expand_stash($c->stash->{$self->stash_variable})
+      if $c->stash->{$self->stash_variable} ne $original_stash;
+}
+
+sub _minify {
+   my ( $self, $c, $output ) = @_;
+
+   if ( @{$output} ) {
+      return $c->debug
+         ? join q{ }, @{$output}
+         : minify(join q{ }, @{$output} )
+   } else {
+      return q{ };
+   }
+}
+
+sub _combine_files {
+   my ( $self, $c, $files ) = @_;
+
+   my @output;
+   for my $file (@{$files}) {
+      $c->log->debug("loading js file ... $file");
+      open my $in, '<', $file;
+      for (<$in>) {
+         push @output, $_;
+      }
+      close $in;
+   }
+   return @output;
+}
+
+sub _expand_stash {
+   my ( $self, $stash_var ) = @_;
+
+   if ( $stash_var ) {
+      return ref $stash_var eq 'ARRAY'
+         ? @{ $stash_var }
+	 : split /\s+/, $stash_var;
+   }
+
+}
 
 1;
 
+
+
 __END__
-
 =pod
-
-=head1 VERSION
-
-version 0.092800
 
 =head1 NAME
 
-Catalyst::View::JavaScript::Minifier::XS - Concenate and minify your JavaScript files.
+Catalyst::View::JavaScript::Minifier::XS - Minify your served JavaScript files
+
+=head1 VERSION
+
+version 1.093030
 
 =head1 SYNOPSIS
 
-   # creating MyApp::View::JavaScript
-   ./script/myapp_create.pl view JavaScript JavaScript::Minifier::XS
+ # creating MyApp::View::JavaScript
+ ./script/myapp_create.pl view JavaScript JavaScript::Minifier::XS
 
-   # in your controller file, as an action
-   sub js : Local {
-      my ( $self, $c ) = @_;
+ # in your controller file, as an action
+ sub js : Local {
+    my ( $self, $c ) = @_;
 
-      $c->stash->{js} = [qw/script1 script2/]; # loads root/js/script1.js and root/js/script2.js
+    $c->stash->{js} = [qw/script1 script2/]; # loads root/js/script1.js and root/js/script2.js
 
-      $c->forward('View::JavaScript');
-   }
+    $c->forward('View::JavaScript');
+ }
 
-   # in your html template use
-   <script type="text/javascript" src="/js"></script>
+ # in your html
+ <script type="text/javascript" src="/js"></script>
 
 =head1 DESCRIPTION
 
-Use your minified js files as a separated catalyst request. By default they are read from C<< $c->stash->{js} >> as array or string.
+Use your minified js files as a separated catalyst request. By default they
+are read from C<< $c->stash->{js} >> as array or string.  Also note that this
+does not minify the javascript if the server is started in development mode.
 
 =head1 CONFIG VARIABLES
 
@@ -156,46 +170,34 @@ default : js
 
 setting this to true will take your js files (stash variable) from your referer action
 
-	# in your controller
-	sub action : Local {
-		my ( $self, $c ) = @_;
+ # in your controller
+ sub action : Local {
+    my ( $self, $c ) = @_;
 
-		$c->stash->{js} = "exclusive"; # loads exclusive.js only when /action is loaded
-	}
+    $c->stash->{js} = "exclusive"; # loads exclusive.js only when /action is loaded
+ }
 
 This could be very dangerous since it's using C<< $c->forward($c->request->headers->referer) >>. It doesn't work with the index action!
 
 default : false
 
-=back 
-
-
+=back
 
 =head1 SEE ALSO
 
-L<Catalyst>, L<Catalyst::View>, L<JavaScript::Minifier::XS>
+L<JavaScript::Minifier::XS>
 
-=head1 AUTHOR
+=head1 AUTHORS
 
-Ivan Drinchev C<< <drinchev at gmail.com> >>
-
-Arthur Axel "fREW" Schmidt <frioux@gmail.com>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to C<bug-catalyst-view-JavaScript-minifier-xs at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Catalyst-View-JavaScript-Minifier-XS>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
+  Ivan Drinchev <drinchev (at) gmail (dot) com>
+  Arthur Axel "fREW" Schmidt <frioux@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Ivan Drinchev <drinchev@gmail.com>.
+This software is copyright (c) 2009 by Ivan Drinchev <drinchev (at) gmail (dot) com>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
-=cut 
-
+=cut
 

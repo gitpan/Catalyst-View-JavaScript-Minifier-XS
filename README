@@ -1,29 +1,31 @@
-VERSION
-    version 0.092800
-
 NAME
-    Catalyst::View::JavaScript::Minifier::XS - Concenate and minify your
-    JavaScript files.
+    Catalyst::View::JavaScript::Minifier::XS - Minify your served JavaScript
+    files
+
+VERSION
+    version 1.093030
 
 SYNOPSIS
-       # creating MyApp::View::JavaScript
-       ./script/myapp_create.pl view JavaScript JavaScript::Minifier::XS
+     # creating MyApp::View::JavaScript
+     ./script/myapp_create.pl view JavaScript JavaScript::Minifier::XS
 
-       # in your controller file, as an action
-       sub js : Local {
-          my ( $self, $c ) = @_;
+     # in your controller file, as an action
+     sub js : Local {
+        my ( $self, $c ) = @_;
 
-          $c->stash->{js} = [qw/script1 script2/]; # loads root/js/script1.js and root/js/script2.js
+        $c->stash->{js} = [qw/script1 script2/]; # loads root/js/script1.js and root/js/script2.js
 
-          $c->forward('View::JavaScript');
-       }
+        $c->forward('View::JavaScript');
+     }
 
-       # in your html template use
-       <script type="text/javascript" src="/js"></script>
+     # in your html
+     <script type="text/javascript" src="/js"></script>
 
 DESCRIPTION
     Use your minified js files as a separated catalyst request. By default
-    they are read from "$c->stash->{js}" as array or string.
+    they are read from "$c->stash->{js}" as array or string. Also note that
+    this does not minify the javascript if the server is started in
+    development mode.
 
 CONFIG VARIABLES
     stash_variable
@@ -38,12 +40,12 @@ CONFIG VARIABLES
       setting this to true will take your js files (stash variable) from
       your referer action
 
-              # in your controller
-              sub action : Local {
-                      my ( $self, $c ) = @_;
+       # in your controller
+       sub action : Local {
+          my ( $self, $c ) = @_;
 
-                      $c->stash->{js} = "exclusive"; # loads exclusive.js only when /action is loaded
-              }
+          $c->stash->{js} = "exclusive"; # loads exclusive.js only when /action is loaded
+       }
 
       This could be very dangerous since it's using
       "$c->forward($c->request->headers->referer)". It doesn't work with the
@@ -52,24 +54,15 @@ CONFIG VARIABLES
       default : false
 
 SEE ALSO
-    Catalyst, Catalyst::View, JavaScript::Minifier::XS
+    JavaScript::Minifier::XS
 
-AUTHOR
-    Ivan Drinchev "<drinchev at gmail.com>"
-
-    Arthur Axel "fREW" Schmidt <frioux@gmail.com>
-
-BUGS
-    Please report any bugs or feature requests to
-    "bug-catalyst-view-JavaScript-minifier-xs at rt.cpan.org", or through
-    the web interface at
-    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Catalyst-View-JavaScript
-    -Minifier-XS>. I will be notified, and then you'll automatically be
-    notified of progress on your bug as I make changes.
+AUTHORS
+      Ivan Drinchev <drinchev (at) gmail (dot) com>
+      Arthur Axel "fREW" Schmidt <frioux@gmail.com>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2009 by Ivan Drinchev
-    <drinchev@gmail.com>.
+    This software is copyright (c) 2009 by Ivan Drinchev <drinchev (at)
+    gmail (dot) com>.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.

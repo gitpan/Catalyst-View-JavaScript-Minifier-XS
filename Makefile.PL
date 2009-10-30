@@ -7,21 +7,38 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
   DISTNAME  => 'Catalyst-View-JavaScript-Minifier-XS',
   NAME      => 'Catalyst::View::JavaScript::Minifier::XS',
-  AUTHOR    => "Ivan\ Drinchev\ \<drinchev\@gmail\.com\>",
-  ABSTRACT  => "Concenate\ and\ minify\ your\ JavaScript\ files\.",
-  VERSION   => '0.092800',
+  AUTHOR    => "Ivan\ Drinchev\ \<drinchev\ \(at\)\ gmail\ \(dot\)\ com\>\,\ Arthur\ Axel\ \"fREW\"\ Schmidt\ \<frioux\@gmail\.com\>",
+  ABSTRACT  => "Minify\ your\ served\ JavaScript\ files",
+  VERSION   => '1.093030',
   EXE_FILES => [ qw() ],
   (eval { ExtUtils::MakeMaker->VERSION(6.31) } ? (LICENSE => 'perl') : ()),
   PREREQ_PM    => {
+  (eval { ExtUtils::MakeMaker->VERSION(6.55_01) } ? () : (
     "parent" => '0',
+    "FindBin" => '0',
+    "File::Spec" => '0',
+    "Test::More" => '0.88',
+    "HTTP::Headers" => '0',
+    "HTTP::Request" => '0',
+    "Catalyst::Test" => '0',
+  )),
+    "URI" => '0',
     "JavaScript::Minifier::XS" => '0',
-    "Path::Class" => '0.17',
     "Catalyst" => '5.64',
+    "Path::Class::File" => '0.17',
     "Moose" => '0',
   },
+(eval { ExtUtils::MakeMaker->VERSION(6.55_01) } ? (
   BUILD_REQUIRES    => {
-    "Test::More" => '0',
+    "parent" => '0',
+    "FindBin" => '0',
+    "File::Spec" => '0',
+    "Test::More" => '0.88',
+    "HTTP::Headers" => '0',
+    "HTTP::Request" => '0',
+    "Catalyst::Test" => '0',
   },
+) : ()),
   test => {TESTS => 't/*.t'}
 );
 

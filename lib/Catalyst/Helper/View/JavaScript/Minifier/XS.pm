@@ -1,9 +1,11 @@
 package Catalyst::Helper::View::JavaScript::Minifier::XS;
-our $VERSION = '0.092800';
+our $VERSION = '1.093030';
 
 
 
 use strict;
+use warnings;
+
 
 
 sub mk_compclass {
@@ -12,55 +14,47 @@ sub mk_compclass {
     $helper->render_file( 'compclass', $file );
 }
 
-
 1;
-
 
 
 
 =pod
 
+=head1 NAME
+
+Catalyst::Helper::View::JavaScript::Minifier::XS
+
 =head1 VERSION
 
-version 0.092800
+version 1.093030
+
+=head1 SYNOPSIS
+
+ script/create.pl view JavaScript JavaScript::Minifier::XS
 
 =head1 NAME
 
 Catalyst::Helper::View::JavaScript::Minifier::XS - Helper for JavaScript::Minifier::XS views
 
-=head1 SYNOPSIS
+=head1 METHODS
 
-    script/create.pl view JavaScript JavaScript::Minifier::XS
+=head2 mk_compclass
 
-=head1 DESCRIPTION
+Internal method for generating the view.
 
-Helper for JavaScript::Minifier::XS views
+=head1 AUTHORS
 
-=head2 METHODS
-
-=head3 mk_compclass
-
-
-
-=head1 SEE ALSO
-
-L<Catalyst::Manual>, L<Catalyst::Helper>
-
-=head1 AUTHOR
-
-See L<Catalyst::View::JavaScript::Minifier::XS>
-
-
+  Ivan Drinchev <drinchev (at) gmail (dot) com>
+  Arthur Axel "fREW" Schmidt <frioux@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Ivan Drinchev <drinchev@gmail.com>.
+This software is copyright (c) 2009 by Ivan Drinchev <drinchev (at) gmail (dot) com>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
-=cut 
-
+=cut
 
 
 __DATA__
