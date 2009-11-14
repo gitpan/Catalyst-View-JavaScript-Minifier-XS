@@ -1,5 +1,5 @@
 package Catalyst::Helper::View::JavaScript::Minifier::XS;
-our $VERSION = '1.093030';
+our $VERSION = '1.093180';
 
 
 
@@ -26,7 +26,7 @@ Catalyst::Helper::View::JavaScript::Minifier::XS
 
 =head1 VERSION
 
-version 1.093030
+version 1.093180
 
 =head1 SYNOPSIS
 

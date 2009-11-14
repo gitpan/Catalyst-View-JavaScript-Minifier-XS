@@ -2,6 +2,8 @@
 use strict;
 use warnings;
 
+
+
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
@@ -9,7 +11,7 @@ WriteMakefile(
   NAME      => 'Catalyst::View::JavaScript::Minifier::XS',
   AUTHOR    => "Ivan\ Drinchev\ \<drinchev\ \(at\)\ gmail\ \(dot\)\ com\>\,\ Arthur\ Axel\ \"fREW\"\ Schmidt\ \<frioux\@gmail\.com\>",
   ABSTRACT  => "Minify\ your\ served\ JavaScript\ files",
-  VERSION   => '1.093030',
+  VERSION   => '1.093180',
   EXE_FILES => [ qw() ],
   (eval { ExtUtils::MakeMaker->VERSION(6.31) } ? (LICENSE => 'perl') : ()),
   PREREQ_PM    => {
@@ -24,7 +26,7 @@ WriteMakefile(
   )),
     "URI" => '0',
     "JavaScript::Minifier::XS" => '0',
-    "Catalyst" => '5.64',
+    "Catalyst" => '5.8000',
     "Path::Class::File" => '0.17',
     "Moose" => '0',
   },

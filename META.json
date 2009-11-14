@@ -2,12 +2,12 @@
    "resources" : {
       "repository" : "http://github.com/frioux/Catalyst-View-JavaScript-Minifier-XS"
    },
-   "generated_by" : "Dist::Zilla version 1.093010",
+   "generated_by" : "Dist::Zilla version 1.093180",
    "meta-spec" : {
       "version" : 1.4,
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
-   "version" : "1.093030",
+   "version" : "1.093180",
    "name" : "Catalyst-View-JavaScript-Minifier-XS",
    "author" : [
       "Ivan Drinchev <drinchev (at) gmail (dot) com>",
@@ -26,7 +26,7 @@
    "requires" : {
       "URI" : "0",
       "JavaScript::Minifier::XS" : "0",
-      "Catalyst" : "5.64",
+      "Catalyst" : "5.8000",
       "Path::Class::File" : "0.17",
       "Moose" : "0"
    },

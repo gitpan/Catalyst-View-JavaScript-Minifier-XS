@@ -3,7 +3,7 @@ NAME
     files
 
 VERSION
-    version 1.093030
+    version 1.093180
 
 SYNOPSIS
      # creating MyApp::View::JavaScript
@@ -13,7 +13,8 @@ SYNOPSIS
      sub js : Local {
         my ( $self, $c ) = @_;
 
-        $c->stash->{js} = [qw/script1 script2/]; # loads root/js/script1.js and root/js/script2.js
+        # loads root/js/script1.js and root/js/script2.js
+        $c->stash->{js} = [qw/script1 script2/];
 
         $c->forward('View::JavaScript');
      }
@@ -44,7 +45,8 @@ CONFIG VARIABLES
        sub action : Local {
           my ( $self, $c ) = @_;
 
-          $c->stash->{js} = "exclusive"; # loads exclusive.js only when /action is loaded
+          # load exclusive.js only when /action is loaded
+          $c->stash->{js} = "exclusive";
        }
 
       This could be very dangerous since it's using
