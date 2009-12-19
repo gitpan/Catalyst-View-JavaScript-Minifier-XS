@@ -2,32 +2,31 @@
    "resources" : {
       "repository" : "http://github.com/frioux/Catalyst-View-JavaScript-Minifier-XS"
    },
-   "generated_by" : "Dist::Zilla version 1.093180",
    "meta-spec" : {
       "version" : 1.4,
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
-   "version" : "1.093180",
+   "generated_by" : "Dist::Zilla version 1.093400",
+   "version" : "1.093530",
    "name" : "Catalyst-View-JavaScript-Minifier-XS",
    "author" : [
       "Ivan Drinchev <drinchev (at) gmail (dot) com>",
       "Arthur Axel \"fREW\" Schmidt <frioux@gmail.com>"
    ],
    "license" : "perl",
-   "build_requires" : {
+   "requires" : {
+      "URI" : "0",
       "parent" : "0",
       "FindBin" : "0",
       "File::Spec" : "0",
       "Test::More" : "0.88",
-      "HTTP::Headers" : "0",
-      "HTTP::Request" : "0",
-      "Catalyst::Test" : "0"
-   },
-   "requires" : {
-      "URI" : "0",
       "JavaScript::Minifier::XS" : "0",
-      "Catalyst" : "5.8000",
+      "HTTP::Headers" : "0",
+      "autodie" : "0",
       "Path::Class::File" : "0.17",
+      "Catalyst" : "5.8000",
+      "Catalyst::Test" : "0",
+      "HTTP::Request" : "0",
       "Moose" : "0"
    },
    "abstract" : "Minify your served JavaScript files"

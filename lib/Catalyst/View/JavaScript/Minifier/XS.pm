@@ -1,10 +1,9 @@
 package Catalyst::View::JavaScript::Minifier::XS;
-our $VERSION = '1.093180';
-
-
+our $VERSION = '1.093530';
 
 # ABSTRACT: Minify your served JavaScript files
 
+use autodie;
 use Moose;
 extends 'Catalyst::View';
 
@@ -127,7 +126,7 @@ Catalyst::View::JavaScript::Minifier::XS - Minify your served JavaScript files
 
 =head1 VERSION
 
-version 1.093180
+version 1.093530
 
 =head1 SYNOPSIS
 
