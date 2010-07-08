@@ -1,5 +1,4 @@
 package TestApp2::View::JS;
-our $VERSION = '1.093530';
 
 use strict;
 use warnings;

@@ -3,7 +3,7 @@ NAME
     files
 
 VERSION
-    version 1.093530
+    version 2.000000
 
 SYNOPSIS
      # creating MyApp::View::JavaScript
@@ -59,11 +59,12 @@ SEE ALSO
     JavaScript::Minifier::XS
 
 AUTHORS
-      Ivan Drinchev <drinchev (at) gmail (dot) com>
-      Arthur Axel "fREW" Schmidt <frioux@gmail.com>
+    *   Ivan Drinchev <drinchev (at) gmail (dot) com>
+
+    *   Arthur Axel "fREW" Schmidt <frioux@gmail.com>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2009 by Ivan Drinchev <drinchev (at)
+    This software is copyright (c) 2010 by Ivan Drinchev <drinchev (at)
     gmail (dot) com>.
 
     This is free software; you can redistribute it and/or modify it under

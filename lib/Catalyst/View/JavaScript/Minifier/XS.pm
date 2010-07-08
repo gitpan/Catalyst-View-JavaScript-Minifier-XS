@@ -1,5 +1,7 @@
 package Catalyst::View::JavaScript::Minifier::XS;
-our $VERSION = '1.093530';
+BEGIN {
+  $Catalyst::View::JavaScript::Minifier::XS::VERSION = '2.000000';
+}
 
 # ABSTRACT: Minify your served JavaScript files
 
@@ -56,7 +58,7 @@ sub _subinclude {
    return unless $self->subinclude && $c->request->headers->referer;
 
    unless ( $c->request->headers->referer ) {
-      $c->log->debug('javascripts called from no referer sending blank');
+      $c->log->debug('javascripts called from no referer sending blank') if $c->debug;
       $c->res->body( q{ } );
       $c->detach();
    }
@@ -64,12 +66,12 @@ sub _subinclude {
    my $referer = URI->new($c->request->headers->referer);
 
    if ( $referer->path eq '/' ) {
-      $c->log->debug(q{we can't take js from index as it's too likely to enter an infinite loop!});
+      $c->log->debug(q{we can't take js from index as it's too likely to enter an infinite loop!}) if $c->debug;
       return;
    }
 
    $c->forward('/'.$referer->path);
-   $c->log->debug('js taken from referer : '.$referer->path);
+   $c->log->debug('js taken from referer : '.$referer->path) if $c->debug;
 
    return $self->_expand_stash($c->stash->{$self->stash_variable})
       if $c->stash->{$self->stash_variable} ne $original_stash;
@@ -92,7 +94,7 @@ sub _combine_files {
 
    my @output;
    for my $file (@{$files}) {
-      $c->log->debug("loading js file ... $file");
+      $c->log->debug("loading js file ... $file") if $c->debug;
       open my $in, '<', $file;
       for (<$in>) {
          push @output, $_;
@@ -108,7 +110,7 @@ sub _expand_stash {
    if ( $stash_var ) {
       return ref $stash_var eq 'ARRAY'
          ? @{ $stash_var }
-	 : split /\s+/, $stash_var;
+         : split /\s+/, $stash_var;
    }
 
 }
@@ -126,7 +128,7 @@ Catalyst::View::JavaScript::Minifier::XS - Minify your served JavaScript files
 
 =head1 VERSION
 
-version 1.093530
+version 2.000000
 
 =head1 SYNOPSIS
 
@@ -193,12 +195,21 @@ L<JavaScript::Minifier::XS>
 
 =head1 AUTHORS
 
-  Ivan Drinchev <drinchev (at) gmail (dot) com>
-  Arthur Axel "fREW" Schmidt <frioux@gmail.com>
+=over 4
+
+=item *
+
+Ivan Drinchev <drinchev (at) gmail (dot) com>
+
+=item *
+
+Arthur Axel "fREW" Schmidt <frioux@gmail.com>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Ivan Drinchev <drinchev (at) gmail (dot) com>.
+This software is copyright (c) 2010 by Ivan Drinchev <drinchev (at) gmail (dot) com>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

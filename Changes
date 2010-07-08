@@ -1,5 +1,10 @@
 Revision history for Catalyst-View-JavaScript-Minifier-XS
 
+2.000000  2010-07-07 22:33:36 CST6CDT
+         Stop using RJBS-versions
+         Fix module such that the debug output only shows if the
+           server is in debug mode
+
 1.093530  2009-12-19 15:55:43 CST6CDT
          Add autodie so you get errors for js files that don't exist
 
@@ -25,11 +30,11 @@ Revision history for Catalyst-View-JavaScript-Minifier-XS
 0.04     Sept 4, 2009
          fix RT49034, RT48815, RT48814
 
-0.03	 23.02.2009/13:25
-	 [bugfix] when no files parsed print nothing
+0.03   23.02.2009/13:25
+    [bugfix] when no files parsed print nothing
 
-0.02	 18.02.2009/13:00
-	 Added helper
+0.02   18.02.2009/13:00
+    Added helper
 
 0.01     16.02.2009/10:13
          First version, released on an unsuspecting world.

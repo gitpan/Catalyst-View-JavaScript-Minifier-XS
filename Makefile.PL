@@ -4,31 +4,60 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker;
+use ExtUtils::MakeMaker 6.31;
 
-WriteMakefile(
-  DISTNAME  => 'Catalyst-View-JavaScript-Minifier-XS',
-  NAME      => 'Catalyst::View::JavaScript::Minifier::XS',
-  AUTHOR    => "Ivan\ Drinchev\ \<drinchev\ \(at\)\ gmail\ \(dot\)\ com\>\,\ Arthur\ Axel\ \"fREW\"\ Schmidt\ \<frioux\@gmail\.com\>",
-  ABSTRACT  => "Minify\ your\ served\ JavaScript\ files",
-  VERSION   => '1.093530',
-  EXE_FILES => [ qw() ],
-  (eval { ExtUtils::MakeMaker->VERSION(6.31) } ? (LICENSE => 'perl') : ()),
-  PREREQ_PM    => {
-    "URI" => '0',
-    "parent" => '0',
-    "FindBin" => '0',
-    "File::Spec" => '0',
-    "Test::More" => '0.88',
-    "JavaScript::Minifier::XS" => '0',
-    "HTTP::Headers" => '0',
-    "autodie" => '0',
-    "Path::Class::File" => '0.17',
-    "Catalyst" => '5.8000',
-    "Catalyst::Test" => '0',
-    "HTTP::Request" => '0',
-    "Moose" => '0',
+
+
+my %WriteMakefileArgs = (
+  'ABSTRACT' => 'Minify your served JavaScript files',
+  'AUTHOR' => 'Ivan Drinchev <drinchev (at) gmail (dot) com>, Arthur Axel "fREW" Schmidt <frioux@gmail.com>',
+  'BUILD_REQUIRES' => {},
+  'CONFIGURE_REQUIRES' => {
+    'ExtUtils::MakeMaker' => '6.31'
   },
-  test => {TESTS => 't/*.t'}
+  'DISTNAME' => 'Catalyst-View-JavaScript-Minifier-XS',
+  'EXE_FILES' => [],
+  'LICENSE' => 'perl',
+  'NAME' => 'Catalyst::View::JavaScript::Minifier::XS',
+  'PREREQ_PM' => {
+    'Catalyst' => '5.8000',
+    'Catalyst::Test' => '0',
+    'File::Spec' => '0',
+    'FindBin' => '0',
+    'HTTP::Headers' => '0',
+    'HTTP::Request' => '0',
+    'JavaScript::Minifier::XS' => '0',
+    'Moose' => '0',
+    'Path::Class::File' => '0.17',
+    'Test::More' => '0.88',
+    'URI' => '0',
+    'autodie' => '0',
+    'parent' => '0'
+  },
+  'VERSION' => '2.000000',
+  'test' => {
+    'TESTS' => 't/*.t'
+  }
 );
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
 

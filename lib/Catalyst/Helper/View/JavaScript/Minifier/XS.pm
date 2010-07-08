@@ -1,5 +1,7 @@
 package Catalyst::Helper::View::JavaScript::Minifier::XS;
-our $VERSION = '1.093530';
+BEGIN {
+  $Catalyst::Helper::View::JavaScript::Minifier::XS::VERSION = '2.000000';
+}
 
 use strict;
 use warnings;
@@ -24,7 +26,7 @@ Catalyst::Helper::View::JavaScript::Minifier::XS
 
 =head1 VERSION
 
-version 1.093530
+version 2.000000
 
 =head1 SYNOPSIS
 
@@ -42,12 +44,21 @@ Internal method for generating the view.
 
 =head1 AUTHORS
 
-  Ivan Drinchev <drinchev (at) gmail (dot) com>
-  Arthur Axel "fREW" Schmidt <frioux@gmail.com>
+=over 4
+
+=item *
+
+Ivan Drinchev <drinchev (at) gmail (dot) com>
+
+=item *
+
+Arthur Axel "fREW" Schmidt <frioux@gmail.com>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Ivan Drinchev <drinchev (at) gmail (dot) com>.
+This software is copyright (c) 2010 by Ivan Drinchev <drinchev (at) gmail (dot) com>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
