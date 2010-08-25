@@ -3,7 +3,7 @@ NAME
     files
 
 VERSION
-    version 2.000000
+    version 2.100000
 
 SYNOPSIS
      # creating MyApp::View::JavaScript
@@ -32,8 +32,9 @@ CONFIG VARIABLES
     stash_variable
       sets a different stash variable from the default "$c->stash->{js}"
 
-    path
-      sets a different path for your javascript files
+    js_dir
+      Directory containing your javascript files. If a relative path is
+      given, it is taken as relative to your app's root directory.
 
       default : js
 

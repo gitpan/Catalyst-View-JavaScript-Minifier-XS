@@ -5,7 +5,7 @@
       "Arthur Axel \"fREW\" Schmidt <frioux@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.101831, CPAN::Meta::Converter version 2.101670",
+   "generated_by" : "Dist::Zilla version 4.102340, CPAN::Meta::Converter version 2.102160",
    "license" : [
       "perl_5"
    ],
@@ -30,7 +30,8 @@
             "HTTP::Request" : 0,
             "JavaScript::Minifier::XS" : 0,
             "Moose" : 0,
-            "Path::Class::File" : "0.17",
+            "MooseX::Aliases" : 0,
+            "Path::Class::Dir" : "0.17",
             "Test::More" : "0.88",
             "URI" : 0,
             "autodie" : 0,
@@ -39,6 +40,11 @@
       }
    },
    "release_status" : "stable",
-   "version" : "2.000000"
+   "resources" : {
+      "repository" : {
+         "url" : "http://github.com/frioux/Catalyst-View-JavaScript-Minifier-XS"
+      }
+   },
+   "version" : "2.100000"
 }
 

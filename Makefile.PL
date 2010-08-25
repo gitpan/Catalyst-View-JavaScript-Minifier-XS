@@ -28,13 +28,14 @@ my %WriteMakefileArgs = (
     'HTTP::Request' => '0',
     'JavaScript::Minifier::XS' => '0',
     'Moose' => '0',
-    'Path::Class::File' => '0.17',
+    'MooseX::Aliases' => '0',
+    'Path::Class::Dir' => '0.17',
     'Test::More' => '0.88',
     'URI' => '0',
     'autodie' => '0',
     'parent' => '0'
   },
-  'VERSION' => '2.000000',
+  'VERSION' => '2.100000',
   'test' => {
     'TESTS' => 't/*.t'
   }
