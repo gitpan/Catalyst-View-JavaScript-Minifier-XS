@@ -5,7 +5,7 @@
       "Arthur Axel \"fREW\" Schmidt <frioux@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.102340, CPAN::Meta::Converter version 2.102160",
+   "generated_by" : "Dist::Zilla version 4.102340, CPAN::Meta::Converter version 2.102400",
    "license" : [
       "perl_5"
    ],
@@ -45,6 +45,6 @@
          "url" : "http://github.com/frioux/Catalyst-View-JavaScript-Minifier-XS"
       }
    },
-   "version" : "2.100000"
+   "version" : "2.101000"
 }
 

@@ -1,6 +1,6 @@
 package Catalyst::View::JavaScript::Minifier::XS;
 BEGIN {
-  $Catalyst::View::JavaScript::Minifier::XS::VERSION = '2.100000';
+  $Catalyst::View::JavaScript::Minifier::XS::VERSION = '2.101000';
 }
 
 # ABSTRACT: Minify your served JavaScript files
@@ -10,7 +10,9 @@ use Moose;
 
 extends 'Catalyst::View';
 
+use File::stat;
 use JavaScript::Minifier::XS qw/minify/;
+use List::Util 'max';
 use Moose::Util::TypeConstraints;
 use MooseX::Aliases;
 use Path::Class::Dir;
@@ -72,6 +74,7 @@ sub process {
 
    my $output = $self->_combine_files($c, \@files);
 
+   $c->res->headers->last_modified( max map stat($_)->mtime, @files );
    $c->res->body( $self->_minify($c, $output) );
 }
 
@@ -149,7 +152,7 @@ Catalyst::View::JavaScript::Minifier::XS - Minify your served JavaScript files
 
 =head1 VERSION
 
-version 2.100000
+version 2.101000
 
 =head1 SYNOPSIS
 
