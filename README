@@ -3,7 +3,7 @@ NAME
     files
 
 VERSION
-    version 2.101000
+    version 2.101001
 
 SYNOPSIS
      # creating MyApp::View::JavaScript
@@ -65,7 +65,7 @@ AUTHORS
     *   Arthur Axel "fREW" Schmidt <frioux@gmail.com>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2010 by Ivan Drinchev <drinchev (at)
+    This software is copyright (c) 2012 by Ivan Drinchev <drinchev (at)
     gmail (dot) com>.
 
     This is free software; you can redistribute it and/or modify it under

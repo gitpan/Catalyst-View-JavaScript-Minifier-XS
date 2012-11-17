@@ -1,6 +1,6 @@
 package Catalyst::View::JavaScript::Minifier::XS;
-BEGIN {
-  $Catalyst::View::JavaScript::Minifier::XS::VERSION = '2.101000';
+{
+  $Catalyst::View::JavaScript::Minifier::XS::VERSION = '2.101001';
 }
 
 # ABSTRACT: Minify your served JavaScript files
@@ -141,9 +141,8 @@ sub _expand_stash {
 
 1;
 
-
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -152,7 +151,7 @@ Catalyst::View::JavaScript::Minifier::XS - Minify your served JavaScript files
 
 =head1 VERSION
 
-version 2.101000
+version 2.101001
 
 =head1 SYNOPSIS
 
@@ -234,10 +233,9 @@ Arthur Axel "fREW" Schmidt <frioux@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Ivan Drinchev <drinchev (at) gmail (dot) com>.
+This software is copyright (c) 2012 by Ivan Drinchev <drinchev (at) gmail (dot) com>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
