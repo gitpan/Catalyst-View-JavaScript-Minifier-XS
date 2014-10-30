@@ -1,8 +1,5 @@
 package Catalyst::Helper::View::JavaScript::Minifier::XS;
-{
-  $Catalyst::Helper::View::JavaScript::Minifier::XS::VERSION = '2.101001';
-}
-
+$Catalyst::Helper::View::JavaScript::Minifier::XS::VERSION = '2.102000';
 use strict;
 use warnings;
 
@@ -18,13 +15,15 @@ sub mk_compclass {
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Catalyst::Helper::View::JavaScript::Minifier::XS
 
 =head1 VERSION
 
-version 2.101001
+version 2.102000
 
 =head1 SYNOPSIS
 
@@ -56,7 +55,7 @@ Arthur Axel "fREW" Schmidt <frioux@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Ivan Drinchev <drinchev (at) gmail (dot) com>.
+This software is copyright (c) 2014 by Ivan Drinchev <drinchev (at) gmail (dot) com>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

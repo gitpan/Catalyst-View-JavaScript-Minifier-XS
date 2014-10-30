@@ -3,7 +3,7 @@ NAME
     files
 
 VERSION
-    version 2.101001
+    version 2.102000
 
 SYNOPSIS
      # creating MyApp::View::JavaScript
@@ -34,7 +34,8 @@ CONFIG VARIABLES
 
     js_dir
       Directory containing your javascript files. If a relative path is
-      given, it is taken as relative to your app's root directory.
+      given, it is taken as relative to your app's root directory. If a
+      false value is passed to js_dir then no directory is used.
 
       default : js
 
@@ -65,7 +66,7 @@ AUTHORS
     *   Arthur Axel "fREW" Schmidt <frioux@gmail.com>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2012 by Ivan Drinchev <drinchev (at)
+    This software is copyright (c) 2014 by Ivan Drinchev <drinchev (at)
     gmail (dot) com>.
 
     This is free software; you can redistribute it and/or modify it under

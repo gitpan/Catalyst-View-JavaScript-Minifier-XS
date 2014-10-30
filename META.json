@@ -5,7 +5,7 @@
       "Arthur Axel \"fREW\" Schmidt <frioux@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300028, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Zilla version 5.020, CPAN::Meta::Converter version 2.142060",
    "license" : [
       "perl_5"
    ],
@@ -17,7 +17,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.30"
+            "ExtUtils::MakeMaker" : "0"
          }
       },
       "develop" : {
@@ -29,7 +29,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Catalyst" : "5.8000",
+            "Catalyst" : "5.64",
             "Catalyst::Test" : "0",
             "File::Spec" : "0",
             "FindBin" : "0",
@@ -39,21 +39,29 @@
             "Moose" : "0",
             "MooseX::Aliases" : "0",
             "Path::Class::Dir" : "0.17",
-            "Test::More" : "0.88",
             "URI" : "0",
             "autodie" : "0",
             "parent" : "0"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::More" : "0.88"
          }
       }
    },
    "release_status" : "stable",
    "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/frioux/Catalyst-View-JavaScript-Minifier-XS/issues"
+      },
+      "homepage" : "https://github.com/frioux/Catalyst-View-JavaScript-Minifier-XS",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/frioux/Catalyst-View-JavaScript-Minifier-XS.git",
-         "web" : "http://github.com/frioux/Catalyst-View-JavaScript-Minifier-XS"
+         "url" : "https://github.com/frioux/Catalyst-View-JavaScript-Minifier-XS.git",
+         "web" : "https://github.com/frioux/Catalyst-View-JavaScript-Minifier-XS"
       }
    },
-   "version" : "2.101001"
+   "version" : "2.102000"
 }
 
